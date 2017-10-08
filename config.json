@@ -1,0 +1,16 @@
+{
+    "loginPage":"https://www.5giay.vn/login",
+    "count":9,
+    "accounts":[
+        {
+            "username":"your-username",
+            "password":"your-password",
+            "linkup":[
+                "https://www.5giay.vn/threads/karaoke-hanet-hd-va-hd-air-4tb.8966377",
+                "https://www.5giay.vn/threads/modem-wifi-fpt-g-93rg1-100k.8966381/",
+                "https://www.5giay.vn/threads/router-draytek-vigor-2925-full-box-new-99.8966382/"
+            ],
+            "upInEvery":2
+        }
+    ]
+}
