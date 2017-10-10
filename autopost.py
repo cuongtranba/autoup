@@ -4,7 +4,7 @@ import time
 import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from cx_Freeze import setup, Executable
+
 
 def load_config_file():
     with open('config.json') as data_file:
@@ -20,6 +20,7 @@ def up_thread(urls, timeLoop, count, driver):
         nextTimeToUp = datetime.datetime.now() + datetime.timedelta(minutes=timeLoop)
         print(f'up tiep luc:{nextTimeToUp}')
         time.sleep(timeLoop * 60)
+    driver.quit()
 def login(username, password, loginPage):
     driver = webdriver.Chrome('chromedriver.exe')
     driver.get(loginPage)
@@ -44,7 +45,11 @@ def main():
         password = item["password"]
         upInEvery = item["upInEvery"]
         driver = login(username,password,loginPage)
-        up_thread(urls, upInEvery, count, driver)
-        driver.quit()
+        threads.append(threading.Thread(target=up_thread, args=(urls, upInEvery, count, driver)))
+        threads[-1].start()
+	
+    for thread in threads:
+	    thread.join()
+
 if __name__ == '__main__':
     main()
